@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed,fuerzaDeSalto ;
     public Rigidbody rb;
-    public bool cuboEstaEnElPiso = true ;
+     public int cuboEstaEnElPiso = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,28 +16,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+
+
+        if (Input.GetKey(KeyCode.A))
         {
             // transform.position += new Vector3(0,0,0.1f);
             transform.Translate(0, 0, movementSpeed);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.D))
         {
             // transform.position += new Vector3(0,0,0.1f);
             transform.Translate(0, 0, -movementSpeed);
         }
-        if(Input.GetButtonDown("Jump") && cuboEstaEnElPiso)
-            {
+        if (Input.GetButtonDown("Jump") && cuboEstaEnElPiso > 0)
+        {    
             rb.AddForce(new Vector3(0, fuerzaDeSalto, 0), ForceMode.Impulse);
-            cuboEstaEnElPiso = false;
+            cuboEstaEnElPiso--;
+        
+            
         }
     }
     private void OnCollisionEnter(Collision Pepe)
     {
         if (Pepe.gameObject.name == "Piso")
         {
-            cuboEstaEnElPiso = true;
+            cuboEstaEnElPiso = 2;
         }
-      
     }
 }
