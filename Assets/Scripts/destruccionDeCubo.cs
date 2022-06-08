@@ -13,15 +13,14 @@ public class destruccionDeCubo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     void OnCollisionEnter(Collision pepe)
-    {
-
-        if (pepe.gameObject.name == "Player")
+    { 
+      
+        if (pepe.collider.CompareTag("Playerupper"))
         {
-            Destroy(gameObject);
+         Destroy(gameObject)   ;
         }
-
     }
 }

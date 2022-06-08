@@ -38,9 +38,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnCollisionEnter(Collision Pepe)
     {
-        if (Pepe.gameObject.name == "Piso")
+        if (Pepe.gameObject.tag == "Bloque" || Pepe.gameObject.tag == "plataforma")
         {
             cuboEstaEnElPiso = 2;
         }
+       
+        
     }
 }
