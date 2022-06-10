@@ -18,7 +18,7 @@ public class destruccionDeCubo : MonoBehaviour
     void OnCollisionEnter(Collision pepe)
     { 
       
-        if (pepe.collider.CompareTag("Playerupper"))
+        if (pepe.collider.CompareTag("Upperplayer"))
         {
          Destroy(gameObject)   ;
         }
