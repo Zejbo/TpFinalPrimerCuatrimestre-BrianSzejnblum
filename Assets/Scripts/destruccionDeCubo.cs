@@ -5,7 +5,7 @@ using UnityEngine;
 public class destruccionDeCubo : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject moneda;
+    public GameObject moneda ;
     void Start()
     {
 
@@ -22,7 +22,7 @@ public class destruccionDeCubo : MonoBehaviour
         if (pepe.collider.CompareTag("Upperplayer"))
         {
          Destroy(gameObject)   ;
-            Instantiate(moneda,new Vector3(0,0,0),Quaternion.identity);
+            Instantiate(moneda,transform.position,Quaternion.identity);
         }
     }
 }

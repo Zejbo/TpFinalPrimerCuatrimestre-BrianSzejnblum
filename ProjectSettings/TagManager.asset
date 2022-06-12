@@ -9,6 +9,9 @@ TagManager:
   - Plataforma
   - enemigo
   - LowerPlayer
+  - enemigoUpper
+  - piso de la muerte
+  - Moneda
   layers:
   - Default
   - TransparentFX

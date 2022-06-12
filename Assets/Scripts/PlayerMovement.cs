@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Text textoDeVidas;
     public AudioClip sonidoDeSaltar;
     AudioSource fuenteAudio;
-    public float movementSpeed,fuerzaDeSalto ;
+    public float movementSpeed, fuerzaDeSalto;
     public Rigidbody rb;
-     public int cuboEstaEnElPiso = 2;
-    public int vidas = 3;
+    public int cuboEstaEnElPiso = 2;
+    public int vidas = 3,victoria = 0;
     public Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
@@ -21,9 +23,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(vidas == 0)
-            {
+        textoDeVidas.text = ("Tenes " + vidas + " Vidas");
+        if (vidas == 0)
+        {
             Destroy(gameObject);
+            textoDeVidas.text = "Perdiste";
+        }
+        if (victoria == 1)
+        {
+            Destroy(gameObject);
+            textoDeVidas.text = "Ganaste";
         }
 
         if (Input.GetKey(KeyCode.A))
@@ -37,12 +46,12 @@ public class PlayerMovement : MonoBehaviour
             transform.Translate(0, 0, -movementSpeed);
         }
         if (Input.GetButtonDown("Jump") && cuboEstaEnElPiso > 0)
-        {    
+        {
             rb.AddForce(new Vector3(0, fuerzaDeSalto, 0), ForceMode.Impulse);
             cuboEstaEnElPiso--;
             fuenteAudio.clip = sonidoDeSaltar;
             fuenteAudio.Play();
-            
+
         }
     }
     private void OnCollisionEnter(Collision Pepe)
@@ -55,9 +64,13 @@ public class PlayerMovement : MonoBehaviour
         {
             vidas--;
             transform.position = startPosition;
-            
+
+
         }
-        
+        if (Pepe.gameObject.name == "FinishLine" )
+        {
+            victoria = 1 ;
+        }    
 
 
     }
