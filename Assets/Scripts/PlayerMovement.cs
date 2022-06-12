@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Text textoDeVidas,timer;
+    public Text textoDeVidas, timer, TextoMonedas;
     public AudioClip sonidoDeSaltar;
     AudioSource fuenteAudio;
-    public float movementSpeed, fuerzaDeSalto,tiempo = 100;
+    public float movementSpeed, fuerzaDeSalto, tiempo = 100;
     public Rigidbody rb;
-    public int cuboEstaEnElPiso = 2;
-    public int vidas = 3,victoria = 0;
+    public int cuboEstaEnElPiso = 2, monedas = 0;
+    public int vidas = 3, victoria = 0;
     public Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TextoMonedas.text = "Tenes " + monedas + " Monedas";
         tiempo -= Time.deltaTime;
         timer.text = tiempo.ToString("f0");
         textoDeVidas.text = ("Tenes " + vidas + " Vidas");
@@ -70,11 +71,18 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
-        if (Pepe.gameObject.name == "FinishLine" )
+        if (Pepe.gameObject.name == "FinishLine")
         {
-            victoria = 1 ;
-        }    
+            victoria = 1;
+        }
+        if (Pepe.gameObject.tag == "Moneda")
+        {
+            monedas++;
+            
+            
 
+
+        }
 
     }
 }
