@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Text textoDeVidas;
+    public Text textoDeVidas,timer;
     public AudioClip sonidoDeSaltar;
     AudioSource fuenteAudio;
-    public float movementSpeed, fuerzaDeSalto;
+    public float movementSpeed, fuerzaDeSalto,tiempo = 100;
     public Rigidbody rb;
     public int cuboEstaEnElPiso = 2;
     public int vidas = 3,victoria = 0;
@@ -23,8 +23,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        tiempo -= Time.deltaTime;
+        timer.text = tiempo.ToString("f0");
         textoDeVidas.text = ("Tenes " + vidas + " Vidas");
-        if (vidas == 0)
+        if (vidas == 0 || tiempo == 0)
         {
             Destroy(gameObject);
             textoDeVidas.text = "Perdiste";
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(gameObject);
             textoDeVidas.text = "Ganaste";
+            tiempo = 1000000000;
         }
 
         if (Input.GetKey(KeyCode.A))

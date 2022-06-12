@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
     void OnCollisionEnter(Collision pepe)
     {
 
-        if (pepe.collider.CompareTag("LowerPlayer"))
+        if (pepe.collider.tag == "LowerPlayer")
         {
             Destroy(gameObject);
         }
