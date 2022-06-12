@@ -4,19 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public AudioClip sonidoDeSaltar;
+    AudioSource fuenteAudio;
     public float movementSpeed,fuerzaDeSalto ;
     public Rigidbody rb;
      public int cuboEstaEnElPiso = 2;
+    public int vidas = 3;
+    public Vector3 startPosition;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        fuenteAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(vidas == 0)
+            {
+            Destroy(gameObject);
+        }
 
         if (Input.GetKey(KeyCode.A))
         {
@@ -32,7 +40,8 @@ public class PlayerMovement : MonoBehaviour
         {    
             rb.AddForce(new Vector3(0, fuerzaDeSalto, 0), ForceMode.Impulse);
             cuboEstaEnElPiso--;
-        
+            fuenteAudio.clip = sonidoDeSaltar;
+            fuenteAudio.Play();
             
         }
     }
@@ -42,7 +51,14 @@ public class PlayerMovement : MonoBehaviour
         {
             cuboEstaEnElPiso = 2;
         }
-       
+        if (Pepe.gameObject.tag == "enemigo" || Pepe.gameObject.name == "pisoDeLaMuerte")
+        {
+            vidas--;
+            transform.position = startPosition;
+            
+        }
         
+
+
     }
 }

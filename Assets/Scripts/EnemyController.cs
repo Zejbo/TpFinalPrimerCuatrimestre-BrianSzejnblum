@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class destruccionDeCubo : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
+
+
+    public int current;
+    public float velocidad;
     // Start is called before the first frame update
-    public GameObject moneda;
     void Start()
     {
-
     }
+    
 
     // Update is called once per frame
     void Update()
     {
         
     }
+
     void OnCollisionEnter(Collision pepe)
-    { 
-      
-        if (pepe.collider.CompareTag("Upperplayer"))
+    {
+
+        if (pepe.collider.CompareTag("LowerPlayer"))
         {
-         Destroy(gameObject)   ;
-            Instantiate(moneda,new Vector3(0,0,0),Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
