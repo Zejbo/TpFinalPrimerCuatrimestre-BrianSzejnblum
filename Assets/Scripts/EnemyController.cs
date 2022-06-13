@@ -6,11 +6,17 @@ public class EnemyController : MonoBehaviour
 {
 
 
-    public int current;
+
     public float velocidad;
     // Start is called before the first frame update
+
+
     void Start()
     {
+        for ( int current = 10; current> 1; current--)
+        {
+
+        }    
     }
     
 
@@ -23,9 +29,6 @@ public class EnemyController : MonoBehaviour
     void OnCollisionEnter(Collision pepe)
     {
 
-        if (pepe.collider.tag == "LowerPlayer")
-        {
-            Destroy(gameObject);
-        }
+       
     }
 }
