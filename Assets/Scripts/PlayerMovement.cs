@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject coins;
     public Text textoDeVidas, timer, TextoMonedas;
     public AudioClip sonidoDeSaltar;
     AudioSource fuenteAudio;
-    public float movementSpeed, fuerzaDeSalto, tiempo = 100;
+    public float movementSpeed, fuerzaDeSalto, tiempo = 150;
     public Rigidbody rb;
     public int cuboEstaEnElPiso = 2, monedas = 0;
     public int vidas = 3, victoria = 0;
@@ -37,6 +38,11 @@ public class PlayerMovement : MonoBehaviour
             Destroy(gameObject);
             textoDeVidas.text = "Ganaste";
             tiempo = 1000000000;
+            for (int i = 0; i < 6; i++)
+            {
+                Instantiate(coins, transform.position, Quaternion.identity) ; 
+
+            }
         }
 
         if (Input.GetKey(KeyCode.A))
